@@ -1,0 +1,62 @@
+Cross-platform command line mailing program (cmail)
+
+Author ---------------------------------------------------------------------
+----------------------------------------------------------------------------
+Raja Jamwal <linux1@zoho.com>
+
+Usage ----------------------------------------------------------------------
+----------------------------------------------------------------------------
+
+Usage: cmail.py [--content] [HTML/text content] [Mail options] [SMTP options]
+
+Options:
+  -h, --help            				show this help message and exit
+  -m CONTENT, --content=CONTENT				html/text content
+  -f FROM_ID, --from=FROM_ID				email addr. to send from
+  -t TO_ID, --to=TO_ID  				email addr. to send to
+  -c TO_CC, --bcc=TO_CC					send carbon copies to, comma separated addr.
+  -s SUB, --subject=SUB					subject of mail
+  -b BIN, --binary=BIN  				attach a file
+  -a SERVER, --server=SERVER				smtp server addr.
+  -p PORT, --port=PORT  				smtp port number
+  -u USERNAME, --username=USERNAME			smtp login username
+  -l PASSWORD, --password=PASSWORD			smtp login password
+
+Configuration ----------------------------------------------------------------
+------------------------------------------------------------------------------
+Program uses hard-coded configuration when equivalent isn't provided in command line parameter as stated above
+
+To edit hard-coded configuration, edit cmail.py & and modify the stated code below as per your need
+
+smtp_server = "smtp.mail.yahoo.co.in" # smtp.gmail.com
+smtp_port = "587" # port may be 465 or 587, check with mail provider
+smtp_login = ["example@example.com","password"] # example@example.com, password
+mail_meta =  ["example-from@example.com", "example-to@gmail.com", "Subject_here", []] # from, to, subject, CCs
+mail_text = "<html><body>" # some text
+
+Code is pretty much self-explanatory, you can get details from you email service provider
+ 
+Example -----------------------------------------------------------------------
+-------------------------------------------------------------------------------
+Simplest prossible command line is 
+
+./cmail -m "this is email content"
+
+this'll send the mail using hard-coded configuration, you can relavant parameters using command line for example
+
+./cmail -m "this is email content" -t bill@microsoft.com
+
+changes to parameter in hard-coded configuration to one specified in command line
+
+Carbon-Copies ------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Cmail supports BCCs, for example
+
+./cmail -m "this is email content" -t bill@microsoft.com --bcc "other@gmail.com,second@gmail.com"
+
+File attachments ----------------------------------------------------------------
+---------------------------------------------------------------------------------
+Cmail supports sending attachments, for example
+
+./cmail -m "this is email content" -t bill@microsoft.com --bcc "other@gmail.com,second@gmail.com" -b file_to_attach.zip
+
